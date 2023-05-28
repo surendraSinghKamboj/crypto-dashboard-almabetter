@@ -16,7 +16,6 @@ function App() {
 			<Navbar />
 			<div className="flex">
 				<Dropdown data={["USD", "INR", "EUR"]} />
-
 				<Searchbar />
 			</div>
 		</div>
