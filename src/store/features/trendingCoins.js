@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 
-export const fetchCoins = createAsyncThunk('coins/fetchCoins', async () => {
+export const fetchTrendingCoins = createAsyncThunk('coins/fetchCoins', async () => {
     const response = await axios.get('https://api.coingecko.com/api/v3/search/trending');
     return response.data;
 });
@@ -18,15 +18,15 @@ const coinSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder
-            .addCase(fetchCoins.pending, (state) => {
+            .addCase(fetchTrendingCoins.pending, (state) => {
                 state.status = 'loading';
                 state.error = null;
             })
-            .addCase(fetchCoins.fulfilled, (state, action) => {
+            .addCase(fetchTrendingCoins.fulfilled, (state, action) => {
                 state.status = 'succeeded';
                 state.coins = action.payload;
             })
-            .addCase(fetchCoins.rejected, (state, action) => {
+            .addCase(fetchTrendingCoins.rejected, (state, action) => {
                 state.status = 'failed';
                 state.error = action.error.message;
             });

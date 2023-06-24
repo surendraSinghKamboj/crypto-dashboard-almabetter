@@ -6,22 +6,25 @@ import { Searchbar } from "./component/Searchbar";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { fetchCoins } from "./store/features/all_coins";
-
+import { Sidebar } from "./component/Sidebar";
+import { ExchangeCoins } from "./component/CoinExchange";
 function App() {
-	const allCoins = useSelector((state) => state.coinsList);
-	const dispatch = useDispatch();
-	useEffect(()=>{
-		dispatch(fetchCoins());
-	},[])
-	return (
-		<div>
-			<Navbar />
-			<div className="flex">
-				<Dropdown data={["USD", "INR", "EUR"]} />
-				<Searchbar />
-			</div>
-		</div>
-	);
+  const allCoins = useSelector((state) => state.coinsList);
+  console.log(allCoins,"KOMMAAL")
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchCoins());
+  }, []);
+  return (
+    <div>
+      <ExchangeCoins/>
+      {/* <Navbar />
+<Sidebar/>
+      <Dropdown data={["USD", "INR", "EUR"]} /> */}
+     
+      
+    </div>
+  );
 }
 
 export default App;
