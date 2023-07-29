@@ -8,21 +8,33 @@ import { useEffect } from "react";
 import { fetchCoins } from "./store/features/all_coins";
 import { Sidebar } from "./component/Sidebar";
 import { ExchangeCoins } from "./component/CoinExchange";
+import Chart from "./component/Chart";
+
 function App() {
   const allCoins = useSelector((state) => state.coinsList);
-  console.log(allCoins,"KOMMAAL")
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchCoins());
   }, []);
+
   return (
     <div>
-      <ExchangeCoins/>
-      {/* <Navbar />
-<Sidebar/>
-      <Dropdown data={["USD", "INR", "EUR"]} /> */}
-     
-      
+      <Navbar />
+      <div className="flex flex-col">
+        <div className="flex justify-center items-center w-screen">
+          <Dropdown data={["USD", "INR", "EUR"]} />
+          <Searchbar />
+        </div>
+        <div className="flex mt-4 pl-3">
+          <div className="w-2/3">
+            <Chart />
+          </div>
+          <div className="w-1/3 relative">
+            <Sidebar />
+          </div>
+        </div>
+      </div>
+      {/* <ExchangeCoins /> */}
     </div>
   );
 }

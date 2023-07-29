@@ -1,7 +1,4 @@
-
-
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 
 export const ExchangeCoins = () => {
   const [exchangeRates, setExchangeRates] = useState([]);
@@ -9,7 +6,7 @@ export const ExchangeCoins = () => {
   const [value2, setvalue2] = useState();
   const [text1, settext1] = useState("");
   const [text2, settext2] = useState(1);
-  const [units, setUnits] = useState([]);
+  // const [units, setUnits] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -94,7 +91,7 @@ export const ExchangeCoins = () => {
               />
             </div>
             <p className="mt-4 text-green-400 text-sm text-transform:capitalize">
-              {parseFloat(text2).toFixed(2)} {units}
+              {parseFloat(text2).toFixed(2)}
             </p>
           </div>
         </div>
