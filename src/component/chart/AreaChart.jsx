@@ -17,7 +17,7 @@ const AreaChart = ({ data }) => {
     if (Array.isArray(data) && data.length > 0) {
       setDatasets(
         data.map((item) => {
-          return { timeStamp: new Date(item[0]), Price: item[4].toFixed(2) };
+          return { timeStamp: new Date(item[0]), Price: item[1].toFixed(2) };
         })
       );
       console.log(datasets);

@@ -3,8 +3,11 @@ import React, { useEffect, useState } from "react";
 import LineChart from "./chart/LineChart";
 import AreaChart from "./chart/AreaChart";
 import CandleStickChart from "./chart/CandleStickChart";
+import { useSelector } from "react-redux";
 
 const Chart = () => {
+  const coin = useSelector((state) => state.activeCoin);
+  const days = useSelector((state) => state.timeFrame);
   const [data, setData] = useState([]);
   const [chartType, setChartType] = useState("candle");
   const [candlestickData, setCandlestickData] = useState([]);
@@ -13,7 +16,7 @@ const Chart = () => {
     const fetch_Chart_Data = async () => {
       try {
         const response = await axios.get(
-          `https://api.coingecko.com/api/v3/coins/bitcoin/ohlc?vs_currency=inr&days=30`
+          `https://api.coingecko.com/api/v3/coins/${coin}/ohlc?vs_currency=inr&days=${days}`
         );
         !response
           ? console.log("Unable to fetch data.")

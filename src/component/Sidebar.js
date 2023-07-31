@@ -2,8 +2,11 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/solid";
 import { usePagination } from "./pagination";
+import { useDispatch } from "react-redux";
+import { updateCoin } from "../store/features/chartCoin";
 
 export const Sidebar = () => {
+  const dispatch = useDispatch();
   const [data, setData] = useState([]);
   useEffect(() => {
     axios
@@ -17,6 +20,10 @@ export const Sidebar = () => {
         console.error("Error:", error);
       });
   }, []);
+
+  const coinDispatcher = (coin_Name) => {
+    dispatch(updateCoin(coin_Name));
+  };
 
   const dataPerPage = 10;
   const {
@@ -36,6 +43,7 @@ export const Sidebar = () => {
               <tr
                 key={data.id}
                 className="text-center cursor-pointer text-lg border-b border-gray-100 hover:bg-pink-600 last:border-b-0"
+                onClick={() => coinDispatcher(data.name)}
               >
                 <td className="flex items-center">
                   <img

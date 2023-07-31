@@ -21,7 +21,7 @@ const LineChartComponent = ({ data }) => {
         data.map((item) => {
           return {
             timeStamp: new Date(item[0]),
-            Price: item[4].toFixed(2),
+            Price: item[1].toFixed(2),
           };
         })
       );
